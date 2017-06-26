@@ -10,8 +10,8 @@ app = Proc.new do |env|
 	  ['200', {'Content-Type' => 'text/html'}, ['hello world']]
 end
 
-pid = fork {
-  Rack::Handler::Puma.run app, Host: "/tmp/app.sock", Daemonize: true
-}
+pid = fork do
+  Rack::Handler::Puma.run app, Host: '/tmp/app.sock'
+end
 
 Process.detach(pid)
